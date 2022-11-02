@@ -18,7 +18,7 @@ public class MaxValue {
 
     // 线性扫描，一次遍历
     private static int getMaxMin(int[] arr) {
-        int min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;
+        int min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;  // 如果最小值取MIN_VALUE，就没有值比min1、min2小，所以只能取MAX_VALUE
         int max1 = Integer.MIN_VALUE, max2 = Integer.MIN_VALUE, max3 = Integer.MIN_VALUE;
         for (int i = 0; i < arr.length; i++) {
              int x = arr[i];

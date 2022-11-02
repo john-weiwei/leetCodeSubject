@@ -1,6 +1,7 @@
 package com.leetcode;
 
 /**
+ * leetcode2
  * 单链表，两数之和
  * 给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。
  *
@@ -24,10 +25,11 @@ public class LinkedSumOfTwo {
       ListNode(int val, ListNode next) { this.val = val; this.next = next; }
   }
 
+    // 核心思想：线性扫描链表，增加空头、尾节点，ListNode head, tail = null
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode head = null, tail = null;
         int tempValue = 0, num1 = 0, num2 = 0;
-        while(l1 != null || l2 != null) {
+        while (l1 != null || l2 != null) {
 
             if (l1 != null) {
                 num1 = l1.val;
