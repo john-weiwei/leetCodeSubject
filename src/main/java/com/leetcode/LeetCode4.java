@@ -16,19 +16,16 @@ public class LeetCode4 {
 
     public static void main(String[] args) {
 
-        int[] nums1 = {100001};
-        int[] nums2 = {100000};
+        int[] nums1 = {1,2};
+        int[] nums2 = {3,4};
 
         LeetCode4 leetCode4 = new LeetCode4();
         double result = leetCode4.findMedianSortedArrays(nums1, nums2);
         System.out.println(result);
-
-        double a = 5.0/2;
-        int b = 1/2;
-//        System.out.println(a);
-//        System.out.println(b);
     }
 
+    // 暴力求解
+    // 核心思想：合并数组，增加一个数组结束标识；判断数组长度是否能整除2，是：中位数 = (nums3[mid] + nums3[mid-1]) / 2; 否：中位数 = nums3[mid]
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int size1 = nums1.length;
         int size2 = nums2.length;
@@ -44,22 +41,36 @@ public class LeetCode4 {
         }
         int index1 = 0, index2 = 0, index3 = 0;
         int value1 = 0, value2 = 0;
-        while((index1 < size1 || index2 < size2) && index3 < size3) {
+        boolean endFlag1 = false, endFlag2 = false;
+        while(index3 < size3) {
             if (index1 < size1) {
                 value1 = nums1[index1];
+            } else {
+                endFlag1 = true;
             }
 
             if (index2 < size2) {
                 value2 = nums2[index2];
+            } else {
+                endFlag2 = true;
             }
 
-            if (value1 <= value2 && index1 < size1) {
-                nums3[index3] = value1;
-                index1++;
-            } else if (index2 < size2) {
+            if (endFlag1) {
                 nums3[index3] = value2;
                 index2++;
+            } else if (endFlag2) {
+                nums3[index3] = value1;
+                index1++;
+            } else {
+                if (value1 <= value2) {
+                    nums3[index3] = value1;
+                    index1++;
+                } else {
+                    nums3[index3] = value2;
+                    index2++;
+                }
             }
+
             index3++;
         }
 
